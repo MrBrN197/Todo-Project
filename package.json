@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "webpack serve --open",
+    "lint": "npx eslint . && npx stylelint **/*.{css,scss} && npx hint .",
     "build": "webpack build"
   },
   "keywords": [],
