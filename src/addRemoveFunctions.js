@@ -12,6 +12,9 @@ export const createTodo = (item) => {
       <input type="checkbox">
       <div class="input-box">
         <input type="text">
+        <div class="icon delete">
+          <i class="far fa-trash-alt"></i>
+        </div>
       </div>
       <div class="icon">
         <i class="fas fa-ellipsis-v"></i>
@@ -21,6 +24,7 @@ export const createTodo = (item) => {
   todoElem.innerHTML = innerHtml;
   const inputBox = todoElem.querySelector('.input-box input');
   const checkboxInput = todoElem.querySelector('input[type="checkbox"]');
+  const deleteBtn = todoElem.querySelector('.icon.delete');
 
   inputBox.addEventListener('change', (e) => {
     todoList.data[parseInt(todoElem.id, 10)].description = e.currentTarget.value;
@@ -34,6 +38,13 @@ export const createTodo = (item) => {
   checkboxInput.addEventListener('change', (e) => {
     setCompleted(e, id, inputBox);
   });
+
+  deleteBtn.addEventListener('mousedown', () => {
+    todoList.data.splice(id, 1);
+    todoElem.remove();
+    updateStorage(todoList.data);
+  });
+
   todoContainerElement.appendChild(todoElem);
 };
 
