@@ -53,9 +53,22 @@ input {
   align-items: center;
 }
 
-#refresh-todo {
+#refresh-todo-icon {
   padding: 0.4em;
   color: gray;
+  opacity: 0;
+  transition: opacity 120ms;
+  animation: refresh-rotation 1s infinite linear;
+}
+
+#refresh-todo-icon i {
+  vertical-align: middle;
+}
+
+@keyframes refresh-rotation {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .todo-container .title p {
@@ -103,6 +116,7 @@ input {
   justify-content: space-between;
   flex-grow: 1;
   height: 100%;
+  position: relative;
 }
 
 .todo-item .input-box input {
@@ -112,6 +126,20 @@ input {
 
 .clear-completed-container {
   background-color: whitesmoke;
+}
+
+.todo-item .input-box .delete {
+  position: absolute;
+  display: none;
+  right: 0;
+}
+
+.todo-item .input-box:focus-within .delete {
+  display: block;
+}
+
+.todo-item .input-box .delete:hover {
+  color: crimson;
 }
 
 .clear-btn {
