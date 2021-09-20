@@ -53,9 +53,22 @@ input {
   align-items: center;
 }
 
-#refresh-todo {
+#refresh-todo-icon {
   padding: 0.4em;
   color: gray;
+  opacity: 0;
+  transition: opacity 120ms;
+  animation: refresh-rotation 1s infinite linear;
+}
+
+#refresh-todo-icon i {
+  vertical-align: middle;
+}
+
+@keyframes refresh-rotation {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .todo-container .title p {
