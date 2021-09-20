@@ -18,4 +18,6 @@ const clearCompletedBtn = document.getElementById('clear-completed-btn');
 addTodoBtn.addEventListener('click', onSubmit);
 submitBtn.addEventListener('submit', (e) => e.preventDefault() || onSubmit());
 
-clearCompletedBtn.addEventListener('click', removeCompleted);
+clearCompletedBtn.addEventListener('click', () => {
+  removeCompleted();
+});

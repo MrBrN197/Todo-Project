@@ -57,4 +57,8 @@ export const removeCompleted = () => {
 
   todoList.data = notCompletedList;
   updateStorage(todoList.data);
+
+  // reset todo elements indexes
+  todoContainerElement.querySelectorAll('.todo-item')
+    .forEach((item, idx) => { item.id = idx; });
 };
