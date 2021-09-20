@@ -35,6 +35,16 @@ input {
   background-color: transparent;
 }
 
+.todo-container .icon {
+  padding: 0.4em;
+  cursor: pointer;
+  color: rgb(177, 177, 177);
+}
+
+.icon:hover {
+  color: rgb(85, 85, 85);
+}
+
 .todo-container .title {
   display: flex;
   padding: 1rem 0;
@@ -49,6 +59,30 @@ input {
   color: gray;
 }
 
+.add-todo {
+  background-color: white;
+  display: flex;
+  flex-grow: 0;
+  padding: 1em 0;
+  padding-left: 1rem;
+}
+
+.add-todo input {
+  flex-grow: 1;
+  font-style: italic;
+}
+
+.add-todo .icon {
+  font-size: 0.5rem;
+  padding-right: 0.8rem;
+}
+
+.todo-items-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
 .todo-item {
   display: flex;
   align-items: center;
@@ -56,6 +90,19 @@ input {
   height: 3rem;
   background-color: white;
   padding-left: 1rem;
+}
+
+.todo-item .input-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.todo-item .input-box input {
+  height: 100%;
+  flex-grow: 1;
 }
 
 #refresh-todo {
