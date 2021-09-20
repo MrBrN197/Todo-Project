@@ -20,9 +20,15 @@ export const createTodo = (item) => {
 
   todoElem.innerHTML = innerHtml;
   const inputBox = todoElem.querySelector('.input-box input');
+  const checkboxInput = todoElem.querySelector('input[type="checkbox"]');
+
+  inputBox.addEventListener('change', (e) => {
+    todoList.data[parseInt(todoElem.id, 10)].description = e.currentTarget.value;
+    updateStorage(todoList.data);
+  });
+
   inputBox.value = item.description;
   inputBox.style.textDecoration = (item.completed && 'line-through') || 'none';
-  const checkboxInput = todoElem.querySelector('input[type="checkbox"]');
   checkboxInput.checked = item.completed;
 
   checkboxInput.addEventListener('change', (e) => {
