@@ -36,11 +36,11 @@ export const createTodo = (item) => {
   checkboxInput.checked = item.completed;
 
   checkboxInput.addEventListener('change', (e) => {
-    setCompleted(e, id, inputBox);
+    setCompleted(e, todoElem.id, inputBox);
   });
 
   deleteBtn.addEventListener('mousedown', () => {
-    todoList.data.splice(id, 1);
+    todoList.data.splice(todoElem.id, 1);
     todoElem.remove();
     updateStorage(todoList.data);
   });
