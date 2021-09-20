@@ -103,6 +103,7 @@ input {
   justify-content: space-between;
   flex-grow: 1;
   height: 100%;
+  position: relative;
 }
 
 .todo-item .input-box input {
@@ -112,6 +113,20 @@ input {
 
 .clear-completed-container {
   background-color: whitesmoke;
+}
+
+.todo-item .input-box .delete {
+  position: absolute;
+  display: none;
+  right: 0;
+}
+
+.todo-item .input-box:focus-within .delete {
+  display: block;
+}
+
+.todo-item .input-box .delete:hover {
+  color: crimson;
 }
 
 .clear-btn {

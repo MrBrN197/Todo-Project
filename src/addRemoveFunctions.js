@@ -30,9 +30,16 @@ export const createTodo = (item) => {
     todoList.data[parseInt(todoElem.id, 10)].description = e.currentTarget.value;
     updateStorage(todoList.data);
   });
+  inputBox.addEventListener('focus', () => {
+    todoElem.style.backgroundColor = '#f4f5cc';
+  });
+  inputBox.addEventListener('blur', () => {
+    todoElem.style.backgroundColor = 'white';
+  });
 
   inputBox.value = item.description;
   inputBox.style.textDecoration = (item.completed && 'line-through') || 'none';
+  inputBox.style.color = (item.completed && 'gray') || 'black';
   checkboxInput.checked = item.completed;
 
   checkboxInput.addEventListener('change', (e) => {
