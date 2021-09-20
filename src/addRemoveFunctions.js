@@ -28,7 +28,6 @@ export const createTodo = (item) => {
   checkboxInput.addEventListener('change', (e) => {
     setCompleted(e, id, inputBox);
   });
-
   todoContainerElement.appendChild(todoElem);
 };
 
@@ -40,11 +39,22 @@ export const onSubmit = () => {
   const newItem = {
     description: addTodoInput.value,
     completed: false,
-    index: todoList.length,
+    index: todoList.data.length,
   };
-  todoList.push(newItem);
-  updateStorage(todoList);
-  createTodo(newItem, todoList.length - 1);
+  todoList.data.push(newItem);
+  updateStorage(todoList.data);
+  createTodo(newItem, todoList.data.length - 1);
   addTodoInput.value = '';
   addTodoInput.focus();
+};
+
+export const removeCompleted = () => {
+  const notCompletedList = todoList.data.filter((i) => !i.completed);
+  todoList.data
+    .filter((item) => item.completed)
+    .map((item) => document.querySelectorAll('div.todo-item')[item.index])
+    .map((element) => element.remove());
+
+  todoList.data = notCompletedList;
+  updateStorage(todoList.data);
 };

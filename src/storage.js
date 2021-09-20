@@ -30,4 +30,6 @@ const createTodoList = () => {
   return data;
 };
 
-export const todoList = createTodoList();
+export const todoList = {
+  data: createTodoList(),
+};
