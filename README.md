@@ -6,7 +6,7 @@
 
 ## Built With
 
-- Webhint CSS, HTML, js
+- CSS, HTML, js
 - Webhint, Hint, Stylelint
 - Webpack
 
