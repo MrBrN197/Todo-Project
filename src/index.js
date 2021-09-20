@@ -1,5 +1,7 @@
 import './style.css';
 
+import setCompleted from './functions.js';
+
 const todoContainerElement = document.querySelector('.todo-container .todo-items-container');
 
 const todoList = [
@@ -23,7 +25,8 @@ const todoList = [
 const populate = () => {
   todoList.forEach((item) => {
     const todoElem = document.createElement('div');
-    todoElem.id = item.index;
+    const id = item.index;
+    todoElem.id = id;
     todoElem.classList.add('todo-item');
     const innerHtml = `
     <input type="checkbox">
@@ -38,8 +41,14 @@ const populate = () => {
     todoElem.innerHTML = innerHtml;
     const inputBox = todoElem.querySelector('.input-box input');
     inputBox.value = item.description;
+    inputBox.style.textDecoration = (item.completed && 'line-through') || 'none';
     const checkboxInput = todoElem.querySelector('input[type="checkbox"]');
     checkboxInput.checked = item.completed;
+
+    checkboxInput.addEventListener('change', (e) => {
+      setCompleted(e, todoList, id, inputBox);
+    });
+
     todoContainerElement.appendChild(todoElem);
   });
 };
