@@ -50,6 +50,8 @@ export const createTodo = (item) => {
   inputBox.value = item.description;
   inputBox.style.textDecoration = (item.completed && 'line-through') || 'none';
   inputBox.style.color = (item.completed && 'gray') || 'black';
+  inputBox.disabled = item.completed;
+
   checkboxInput.checked = item.completed;
 
   checkboxInput.addEventListener('change', (e) => {
