@@ -10,10 +10,6 @@
 - Webhint, Hint, Stylelint
 - Webpack
 
-## Live Demo
-
-[Live Demo Link](https://mrbrn197.github.io/Todo-Project/)
-
 ## Getting Started
 
 To get a local copy up and running clone the repo and run
