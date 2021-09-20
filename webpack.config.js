@@ -28,6 +28,7 @@ const config = {
   devtool: 'inline-source-map',
   devServer: {
     static: './dist',
+    watchFiles: ['src/**/*'],
   },
 };
 

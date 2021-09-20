@@ -10,7 +10,25 @@
 </head>
 
 <body>
-  <div id="todo-container">
+  <div class="todo-container">
+    <div class="title">
+      <p>Today's To Do</p>
+      <div id="refresh-todo">
+        <i class="fas fa-sync-alt"></i>
+      </div>
+    </div>
+    <form autocomplete="off" action="#" class="add-todo">
+      <input id="add-todo-input" type="text" placeholder="Add to your list...">
+      <input type="submit" hidden>
+      <div id="add-todo-btn" class="icon">
+        <i class="fas fa-level-down-alt fa-rotate-90"></i>
+      </div>
+    </form>
+    <div class="todo-items-container">
+    </div>
+    <div class="clear-completed-container">
+      <button id="clear-completed-btn" class="clear-btn">Clear all completed</button>
+    </div>
   </div>
 
 </body>

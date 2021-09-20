@@ -1,4 +1,6 @@
-const todoContainerElement = document.getElementById('todo-container');
+import './style.css';
+
+const todoContainerElement = document.querySelector('.todo-container .todo-items-container');
 
 const todoList = [
   {
@@ -19,9 +21,9 @@ const todoList = [
 ];
 
 const populate = () => {
-  todoList.forEach((item, index) => {
+  todoList.forEach((item) => {
     const todoElem = document.createElement('div');
-    todoElem.id = index;
+    todoElem.id = item.index;
     todoElem.classList.add('todo-item');
     const innerHtml = `
     <input type="checkbox">
