@@ -53,6 +53,11 @@ input {
   align-items: center;
 }
 
+#refresh-todo {
+  padding: 0.4em;
+  color: gray;
+}
+
 .todo-container .title p {
   flex-grow: 1;
   font-weight: 600;
@@ -105,7 +110,20 @@ input {
   flex-grow: 1;
 }
 
-#refresh-todo {
-  padding: 0.4em;
-  color: gray;
+.clear-completed-container {
+  background-color: whitesmoke;
+}
+
+.clear-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 0 auto;
+  display: block;
+  padding: 0.8em;
+}
+
+.clear-btn:hover {
+  text-decoration: underline;
 }
