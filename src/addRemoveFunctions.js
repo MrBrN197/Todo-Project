@@ -3,6 +3,17 @@ import { todoList, updateStorage } from './storage.js';
 
 const todoContainerElement = document.querySelector('.todo-container .todo-items-container');
 
+const removeTodoItem = (todoElem) => {
+  todoList.data.splice(todoElem.id, 1);
+  todoElem.remove();
+  updateStorage(todoList.data);
+};
+
+const editTodoItem = (id, newValue) => {
+  todoList.data[parseInt(id, 10)].description = newValue;
+  updateStorage(todoList.data);
+};
+
 export const createTodo = (item) => {
   const todoElem = document.createElement('div');
   const id = item.index;
@@ -27,8 +38,7 @@ export const createTodo = (item) => {
   const deleteBtn = todoElem.querySelector('.icon.delete');
 
   inputBox.addEventListener('change', (e) => {
-    todoList.data[parseInt(todoElem.id, 10)].description = e.currentTarget.value;
-    updateStorage(todoList.data);
+    editTodoItem(todoElem.id, e.currentTarget.value);
   });
   inputBox.addEventListener('focus', () => {
     todoElem.style.backgroundColor = '#f4f5cc';
@@ -47,9 +57,7 @@ export const createTodo = (item) => {
   });
 
   deleteBtn.addEventListener('mousedown', () => {
-    todoList.data.splice(todoElem.id, 1);
-    todoElem.remove();
-    updateStorage(todoList.data);
+    removeTodoItem(todoElem);
   });
 
   todoContainerElement.appendChild(todoElem);
