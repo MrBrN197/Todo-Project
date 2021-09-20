@@ -31,3 +31,20 @@ export const createTodo = (item) => {
 
   todoContainerElement.appendChild(todoElem);
 };
+
+export const onSubmit = () => {
+  const addTodoInput = document.getElementById('add-todo-input');
+  if (!addTodoInput.value) {
+    return;
+  }
+  const newItem = {
+    description: addTodoInput.value,
+    completed: false,
+    index: todoList.length,
+  };
+  todoList.push(newItem);
+  updateStorage(todoList);
+  createTodo(newItem, todoList.length - 1);
+  addTodoInput.value = '';
+  addTodoInput.focus();
+};
