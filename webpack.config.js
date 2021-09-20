@@ -2,8 +2,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-require('webpack-dev-server');
-
 const config = {
   mode: 'development',
   entry: './src/index.js',
