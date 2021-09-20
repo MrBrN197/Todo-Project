@@ -13,23 +13,7 @@ const createTodoList = () => {
   if (prevStorage && prevStorage.length) {
     return prevStorage;
   }
-  const data = [
-    {
-      description: 'dishes',
-      completed: false,
-      index: 0,
-    },
-    {
-      description: 'exercise',
-      completed: false,
-      index: 1,
-    },
-    {
-      description: 'finish project',
-      completed: false,
-      index: 2,
-    },
-  ];
+  const data = [];
   updateStorage(data);
   return data;
 };
