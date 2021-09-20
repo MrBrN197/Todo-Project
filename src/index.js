@@ -1,27 +1,33 @@
 import './style.css';
 
-import setCompleted from './functions.js';
+import { setCompleted, updateStorage, STORAGE_NAME } from './functions.js';
 
 const todoContainerElement = document.querySelector('.todo-container .todo-items-container');
 
-const todoList = [
-  {
-    description: 'watch the dishes',
-    completed: true,
-    index: 0,
-  },
-  {
-    description: 'complete to do list project',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'watch "NO TIME TO DIE"',
-    completed: false,
-    index: 2,
-  },
-];
-
+const prevStorage = JSON.parse(localStorage.getItem(STORAGE_NAME));
+let todoList;
+if (prevStorage && prevStorage.length) {
+  todoList = prevStorage;
+} else {
+  todoList = [
+    {
+      description: 'dishes',
+      completed: false,
+      index: 0,
+    },
+    {
+      description: 'exercise',
+      completed: false,
+      index: 1,
+    },
+    {
+      description: 'finish project',
+      completed: false,
+      index: 2,
+    },
+  ];
+  updateStorage(todoList);
+}
 const populate = () => {
   todoList.forEach((item) => {
     const todoElem = document.createElement('div');
