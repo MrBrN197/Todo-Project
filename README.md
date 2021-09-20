@@ -6,7 +6,7 @@
 
 ## Built With
 
-- Webhint CSS, HTML, js
+- CSS, HTML, JS
 - Webhint, Hint, Stylelint
 - Webpack
 
@@ -16,29 +16,28 @@
 
 ## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
+To get a local copy up and running clone the repo and run
 
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-### Setup
+`npm install`
 
 ### Install
 
+to build a the project into `./dist` folder run
+
+`npm run build`
+
 ### Usage
 
-### Run tests
+to start the webpack-dev-server run
 
-### Deployment
+`npm run serve`
 
 ## Authors
 
-👤 **Author1**
+👤 **Brian Orora**
 
 - GitHub: [@MrBrN197](https://github.com/githubhandle)
-- LinkedIn: [BrianOrora](https://www.linkedin.com/in/brian-orora-2b7883a7/)
+- LinkedIn: [brianorora](https://www.linkedin.com/in/brian-orora-2b7883a7/)
 
 ## 🤝 Contributing
 
