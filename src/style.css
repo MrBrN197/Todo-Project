@@ -61,6 +61,10 @@ input {
   animation: refresh-rotation 1s infinite linear;
 }
 
+#refresh-todo-icon.active {
+  opacity: 1;
+}
+
 #refresh-todo-icon i {
   vertical-align: middle;
 }
@@ -110,6 +114,10 @@ input {
   padding-left: 1rem;
 }
 
+.todo-item.highlight {
+  background-color: #f4f5cc;
+}
+
 .todo-item .input-box {
   display: flex;
   align-items: center;
@@ -122,6 +130,11 @@ input {
 .todo-item .input-box input {
   height: 100%;
   flex-grow: 1;
+}
+
+.todo-item .input-box input.checked {
+  text-decoration: line-through;
+  color: gray;
 }
 
 .clear-completed-container {

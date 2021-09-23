@@ -6,18 +6,20 @@ const todoContainerElement = document.querySelector('.todo-container .todo-items
 const removeTodoItem = (todoElem) => {
   todoList.data.splice(todoElem.id, 1);
   todoElem.remove();
+  // reset todo elements indexes
+  todoContainerElement.querySelectorAll('.todo-item')
+    .forEach((item, idx) => { item.id = idx; });
   updateStorage(todoList.data);
 };
 
-const editTodoItem = (id, newValue) => {
-  todoList.data[parseInt(id, 10)].description = newValue;
+const editTodoItem = (item, newValue) => {
+  item.description = newValue.trim();
   updateStorage(todoList.data);
 };
 
 export const createTodo = (item) => {
   const todoElem = document.createElement('div');
-  const id = item.index;
-  todoElem.id = id;
+  todoElem.id = item.index;
   todoElem.classList.add('todo-item');
   const innerHtml = `
       <input type="checkbox">
@@ -38,24 +40,29 @@ export const createTodo = (item) => {
   const deleteBtn = todoElem.querySelector('.icon.delete');
 
   inputBox.addEventListener('change', (e) => {
-    editTodoItem(todoElem.id, e.currentTarget.value);
+    editTodoItem(item, e.currentTarget.value);
+    e.currentTarget.value = e.currentTarget.value.trim();
   });
   inputBox.addEventListener('focus', () => {
-    todoElem.style.backgroundColor = '#f4f5cc';
+    todoElem.classList.add('highlight');
+    inputBox.classList.remove('checked');
   });
   inputBox.addEventListener('blur', () => {
-    todoElem.style.backgroundColor = 'white';
+    todoElem.classList.remove('highlight');
+    if (item.completed) {
+      inputBox.classList.add('checked');
+    }
   });
 
   inputBox.value = item.description;
-  inputBox.style.textDecoration = (item.completed && 'line-through') || 'none';
-  inputBox.style.color = (item.completed && 'gray') || 'black';
-  inputBox.disabled = item.completed;
+  if (item.completed) {
+    inputBox.classList.add('checked');
+  }
 
   checkboxInput.checked = item.completed;
 
   checkboxInput.addEventListener('change', (e) => {
-    setCompleted(e, todoElem.id, inputBox);
+    setCompleted(e, item, inputBox);
   });
 
   deleteBtn.addEventListener('mousedown', () => {
@@ -84,9 +91,10 @@ export const onSubmit = () => {
 
 export const removeCompleted = () => {
   const notCompletedList = todoList.data.filter((i) => !i.completed);
+  const todoElements = document.querySelectorAll('div.todo-item');
   todoList.data
     .filter((item) => item.completed)
-    .map((item) => document.querySelectorAll('div.todo-item')[item.index])
+    .map((item) => todoElements[item.index])
     .map((element) => element.remove());
 
   todoList.data = notCompletedList;
