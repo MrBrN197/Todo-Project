@@ -12,15 +12,14 @@ const removeTodoItem = (todoElem) => {
   updateStorage(todoList.data);
 };
 
-const editTodoItem = (id, newValue) => {
-  todoList.data[parseInt(id, 10)].description = newValue;
+const editTodoItem = (item, newValue) => {
+  item.description = newValue;
   updateStorage(todoList.data);
 };
 
 export const createTodo = (item) => {
   const todoElem = document.createElement('div');
-  const id = item.index;
-  todoElem.id = id;
+  todoElem.id = item.index;
   todoElem.classList.add('todo-item');
   const innerHtml = `
       <input type="checkbox">
@@ -41,7 +40,7 @@ export const createTodo = (item) => {
   const deleteBtn = todoElem.querySelector('.icon.delete');
 
   inputBox.addEventListener('change', (e) => {
-    editTodoItem(todoElem.id, e.currentTarget.value);
+    editTodoItem(item, e.currentTarget.value);
   });
   inputBox.addEventListener('focus', () => {
     todoElem.style.backgroundColor = '#f4f5cc';
@@ -58,7 +57,7 @@ export const createTodo = (item) => {
   checkboxInput.checked = item.completed;
 
   checkboxInput.addEventListener('change', (e) => {
-    setCompleted(e, todoElem.id, inputBox);
+    setCompleted(e, item, inputBox);
   });
 
   deleteBtn.addEventListener('mousedown', () => {
