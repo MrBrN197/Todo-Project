@@ -28,7 +28,9 @@ input {
   background-color: rgb(218, 218, 218);
   gap: 1px;
   box-shadow: 0 2.5px 6px rgba(0, 0, 0, 0.2);
-  border: 2px solid whitesmoke;
+  margin-top: 200px;
+  border-radius: 0.9rem;
+  overflow: hidden;
 }
 
 .todo-container input {
