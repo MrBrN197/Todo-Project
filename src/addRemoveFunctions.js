@@ -87,9 +87,10 @@ export const onSubmit = () => {
 
 export const removeCompleted = () => {
   const notCompletedList = todoList.data.filter((i) => !i.completed);
+  const todoElements = document.querySelectorAll('div.todo-item');
   todoList.data
     .filter((item) => item.completed)
-    .map((item) => document.querySelectorAll('div.todo-item')[item.index])
+    .map((item) => todoElements[item.index])
     .map((element) => element.remove());
 
   todoList.data = notCompletedList;
