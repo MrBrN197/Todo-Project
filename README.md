@@ -4,6 +4,8 @@
 
 > A simple HTML todo project
 
+![demo](demo.gif)
+
 ## Built With
 
 - CSS, HTML, JS
