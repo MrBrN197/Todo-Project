@@ -6,6 +6,9 @@ const todoContainerElement = document.querySelector('.todo-container .todo-items
 const removeTodoItem = (todoElem) => {
   todoList.data.splice(todoElem.id, 1);
   todoElem.remove();
+  // reset todo elements indexes
+  todoContainerElement.querySelectorAll('.todo-item')
+    .forEach((item, idx) => { item.id = idx; });
   updateStorage(todoList.data);
 };
 
