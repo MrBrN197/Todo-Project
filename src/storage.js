@@ -4,14 +4,14 @@ let timeout;
 const refreshIcon = document.getElementById('refresh-todo-icon');
 export const updateStorage = (newList) => {
   clearTimeout(timeout);
-  refreshIcon.style.opacity = 1;
+  refreshIcon.classList.add('active');
   // update todo items indexes
   newList.forEach((item, idx) => {
     item.index = idx;
   });
   localStorage.setItem(STORAGE_NAME, JSON.stringify(newList));
   timeout = setTimeout(() => {
-    refreshIcon.style.opacity = 0;
+    refreshIcon.classList.remove('active');
   }, 400);
 };
 

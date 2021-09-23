@@ -43,16 +43,20 @@ export const createTodo = (item) => {
     editTodoItem(item, e.currentTarget.value);
   });
   inputBox.addEventListener('focus', () => {
-    todoElem.style.backgroundColor = '#f4f5cc';
+    todoElem.classList.add('highlight');
+    inputBox.classList.remove('checked');
   });
   inputBox.addEventListener('blur', () => {
-    todoElem.style.backgroundColor = 'white';
+    todoElem.classList.remove('highlight');
+    if (item.completed) {
+      inputBox.classList.add('checked');
+    }
   });
 
   inputBox.value = item.description;
-  inputBox.style.textDecoration = (item.completed && 'line-through') || 'none';
-  inputBox.style.color = (item.completed && 'gray') || 'black';
-  inputBox.disabled = item.completed;
+  if (item.completed) {
+    inputBox.classList.add('checked');
+  }
 
   checkboxInput.checked = item.completed;
 
