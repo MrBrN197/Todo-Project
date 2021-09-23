@@ -13,7 +13,7 @@ const removeTodoItem = (todoElem) => {
 };
 
 const editTodoItem = (item, newValue) => {
-  item.description = newValue;
+  item.description = newValue.trim();
   updateStorage(todoList.data);
 };
 
@@ -41,6 +41,7 @@ export const createTodo = (item) => {
 
   inputBox.addEventListener('change', (e) => {
     editTodoItem(item, e.currentTarget.value);
+    e.currentTarget.value = e.currentTarget.value.trim();
   });
   inputBox.addEventListener('focus', () => {
     todoElem.classList.add('highlight');
