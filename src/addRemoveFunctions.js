@@ -2,6 +2,8 @@ import setCompleted from './setCompleted.js';
 import { todoList, updateStorage } from './storage.js';
 
 const todoContainerElement = document.querySelector('.todo-container .todo-items-container');
+const todoContainerX = todoContainerElement.getBoundingClientRect().left;
+const todoContainerY = todoContainerElement.getBoundingClientRect().top;
 
 const removeTodoItem = (todoElem) => {
   todoList.data.splice(todoElem.id, 1);
@@ -17,6 +19,19 @@ const editTodoItem = (item, newValue) => {
   updateStorage(todoList.data);
 };
 
+let active = false;
+let offsetLeft;
+let offsetTop;
+let offsetFromMoveBtnX;
+let offsetFromMoveBtnY;
+
+const PLACEHOLDER = document.createElement('div');
+PLACEHOLDER.id = 'placeholder';
+PLACEHOLDER.style.position = 'absolute';
+PLACEHOLDER.style.width = '400px';
+PLACEHOLDER.style.height = '52px';
+PLACEHOLDER.style.backgroundColor = 'royalblue';
+
 export const createTodo = (item) => {
   const todoElem = document.createElement('div');
   todoElem.id = item.index;
@@ -29,7 +44,7 @@ export const createTodo = (item) => {
           <i class="far fa-trash-alt"></i>
         </div>
       </div>
-      <div class="icon">
+      <div class="icon move temporary">
         <i class="fas fa-ellipsis-v"></i>
       </div>
       `;
@@ -38,6 +53,7 @@ export const createTodo = (item) => {
   const inputBox = todoElem.querySelector('.input-box input');
   const checkboxInput = todoElem.querySelector('input[type="checkbox"]');
   const deleteBtn = todoElem.querySelector('.icon.delete');
+  const moveBtn = todoElem.querySelector('.icon.move');
 
   inputBox.addEventListener('change', (e) => {
     editTodoItem(item, e.currentTarget.value);
@@ -67,6 +83,35 @@ export const createTodo = (item) => {
 
   deleteBtn.addEventListener('mousedown', () => {
     removeTodoItem(todoElem);
+  });
+
+  const mouseMoved = (e) => {
+    console.log('mousemove');
+    if (!active) return;
+    offsetLeft = e.pageX - todoContainerX;
+    offsetTop = e.pageY - todoContainerY;
+    PLACEHOLDER.style.left = `${offsetLeft - offsetFromMoveBtnX}px`;
+    PLACEHOLDER.style.top = `${offsetTop - offsetFromMoveBtnY}px`;
+  };
+
+  moveBtn.addEventListener('mousedown', (e) => {
+    console.log('mouse down');
+    active = true;
+    document.addEventListener('mousemove', mouseMoved);
+    offsetFromMoveBtnX = e.pageX - (todoElem.getBoundingClientRect().left + window.scrollX);
+    offsetFromMoveBtnY = e.pageY - (todoElem.getBoundingClientRect().top + window.scrollY);
+
+    offsetLeft = e.pageX - todoContainerX;
+    offsetTop = e.pageY - todoContainerY;
+    PLACEHOLDER.style.left = `${offsetLeft - offsetFromMoveBtnX}px`;
+    PLACEHOLDER.style.top = `${offsetTop - offsetFromMoveBtnY}px`;
+    todoContainerElement.appendChild(PLACEHOLDER);
+  });
+
+  document.addEventListener('mouseup', () => {
+    console.log('mouse up');
+    document.removeEventListener('mousemove', mouseMoved);
+    PLACEHOLDER.remove();
   });
 
   todoContainerElement.appendChild(todoElem);
