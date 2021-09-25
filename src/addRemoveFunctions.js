@@ -1,5 +1,5 @@
 import setCompleted from './setCompleted.js';
-import { todoList, updateStorage } from './storage.js';
+import { todoList, updateStorage, getItem } from './storage.js';
 
 const todoContainerElement = document.querySelector('.todo-container .todo-items-container');
 const todoContainerX = todoContainerElement.getBoundingClientRect().left;
@@ -56,7 +56,7 @@ export const createTodo = (item) => {
   const moveBtn = todoElem.querySelector('.icon.move');
 
   inputBox.addEventListener('change', (e) => {
-    editTodoItem(item, e.currentTarget.value);
+    editTodoItem(getItem(todoElem.id), e.currentTarget.value);
     e.currentTarget.value = e.currentTarget.value.trim();
   });
   inputBox.addEventListener('focus', () => {
@@ -65,7 +65,7 @@ export const createTodo = (item) => {
   });
   inputBox.addEventListener('blur', () => {
     todoElem.classList.remove('highlight');
-    if (item.completed) {
+    if (getItem(todoElem.id).completed) {
       inputBox.classList.add('checked');
     }
   });
@@ -78,7 +78,7 @@ export const createTodo = (item) => {
   checkboxInput.checked = item.completed;
 
   checkboxInput.addEventListener('change', (e) => {
-    setCompleted(e, item, inputBox);
+    setCompleted(e, getItem(todoElem.id), inputBox);
   });
 
   deleteBtn.addEventListener('mousedown', () => {
