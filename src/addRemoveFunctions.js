@@ -88,6 +88,7 @@ export const createTodo = (item) => {
   let lastIndex = null;
 
   const mouseMoved = (e) => {
+    e.preventDefault();
     if (!active) return;
     offsetLeft = e.pageX - todoContainerX;
     offsetTop = e.pageY - todoContainerY;
@@ -115,6 +116,7 @@ export const createTodo = (item) => {
   };
 
   moveBtn.addEventListener('mousedown', (e) => {
+    e.preventDefault();
     active = true;
     document.addEventListener('mousemove', mouseMoved);
     offsetFromMoveBtnX = e.pageX - (todoElem.getBoundingClientRect().left + window.scrollX);
