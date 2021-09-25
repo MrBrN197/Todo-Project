@@ -28,9 +28,9 @@ let offsetFromMoveBtnY;
 const PLACEHOLDER = document.createElement('div');
 PLACEHOLDER.id = 'placeholder';
 PLACEHOLDER.style.position = 'absolute';
-PLACEHOLDER.style.width = '400px';
-PLACEHOLDER.style.height = '52px';
-PLACEHOLDER.style.backgroundColor = 'royalblue';
+PLACEHOLDER.style.width = '384px';
+PLACEHOLDER.style.border = '1px solid black';
+// PLACEHOLDER.style.height = '52px';
 
 export const createTodo = (item) => {
   const todoElem = document.createElement('div');
@@ -85,13 +85,24 @@ export const createTodo = (item) => {
     removeTodoItem(todoElem);
   });
 
+  let lastIndex = null;
+
   const mouseMoved = (e) => {
-    console.log('mousemove');
+    // console.log('mousemove');
     if (!active) return;
     offsetLeft = e.pageX - todoContainerX;
     offsetTop = e.pageY - todoContainerY;
     PLACEHOLDER.style.left = `${offsetLeft - offsetFromMoveBtnX}px`;
     PLACEHOLDER.style.top = `${offsetTop - offsetFromMoveBtnY}px`;
+
+    const todoItemIndex = Math.floor(offsetTop / 52);
+
+    if (lastIndex !== todoItemIndex && todoItemIndex >= 0) {
+      console.log('index: ', todoItemIndex);
+      todoElem.remove();
+      todoContainerElement.insertBefore(todoElem, todoContainerElement.children[todoItemIndex]);
+      lastIndex = todoItemIndex;
+    }
   };
 
   moveBtn.addEventListener('mousedown', (e) => {
@@ -105,11 +116,19 @@ export const createTodo = (item) => {
     offsetTop = e.pageY - todoContainerY;
     PLACEHOLDER.style.left = `${offsetLeft - offsetFromMoveBtnX}px`;
     PLACEHOLDER.style.top = `${offsetTop - offsetFromMoveBtnY}px`;
+
+    // const newNode = todoElem.cloneNode(true);
+    PLACEHOLDER.innerHTML = todoElem.innerHTML;
+    PLACEHOLDER.querySelector('input[type="text"]').value = inputBox.value;
+    PLACEHOLDER.classList.add('todo-item');
+    todoElem.classList.add('selected');
     todoContainerElement.appendChild(PLACEHOLDER);
   });
 
   document.addEventListener('mouseup', () => {
     console.log('mouse up');
+    active = false;
+    todoElem.classList.remove('selected');
     document.removeEventListener('mousemove', mouseMoved);
     PLACEHOLDER.remove();
   });
