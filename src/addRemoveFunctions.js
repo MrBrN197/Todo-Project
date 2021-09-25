@@ -136,6 +136,11 @@ export const createTodo = (item) => {
   todoContainerElement.appendChild(todoElem);
 };
 
+// NOTE: disable drag start for firefox
+todoContainerElement.addEventListener('dragstart', (e) => {
+  e.preventDefault();
+});
+
 export const onSubmit = () => {
   const addTodoInput = document.getElementById('add-todo-input');
   if (!addTodoInput.value) {
