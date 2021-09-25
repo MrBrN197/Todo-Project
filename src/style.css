@@ -52,7 +52,11 @@ input {
   color: rgb(177, 177, 177);
 }
 
-.icon:hover {
+.todo-container .icon.move {
+  cursor: move;
+}
+
+.todo-container .icon:hover {
   color: rgb(85, 85, 85);
 }
 
@@ -105,7 +109,7 @@ input {
   font-style: italic;
 }
 
-.add-todo .icon {
+.todo-container .add-todo .icon {
   font-size: 0.5rem;
   padding-right: 0.8rem;
 }
