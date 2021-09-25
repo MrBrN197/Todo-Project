@@ -102,11 +102,14 @@ export const createTodo = (item) => {
       lastIndex = todoItemIndex;
 
       const elements = Array.from(document.querySelectorAll('.todo-item:not(#placeholder)'));
-      todoList.data = elements.map((elem, idx) => ({
-        description: elem.querySelector('input[type="text"]').value,
-        complted: elem.querySelector('input[type="checkbox"]').checked,
-        index: idx,
-      }));
+      todoList.data = elements.map((elem, idx) => {
+        elem.id = idx;
+        return {
+          description: elem.querySelector('input[type="text"]').value,
+          complted: elem.querySelector('input[type="checkbox"]').checked,
+          index: idx,
+        };
+      });
       updateStorage(todoList.data);
     }
   };
