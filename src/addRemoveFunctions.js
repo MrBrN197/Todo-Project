@@ -88,7 +88,6 @@ export const createTodo = (item) => {
   let lastIndex = null;
 
   const mouseMoved = (e) => {
-    // console.log('mousemove');
     if (!active) return;
     offsetLeft = e.pageX - todoContainerX;
     offsetTop = e.pageY - todoContainerY;
@@ -98,15 +97,21 @@ export const createTodo = (item) => {
     const todoItemIndex = Math.floor(offsetTop / 52);
 
     if (lastIndex !== todoItemIndex && todoItemIndex >= 0) {
-      console.log('index: ', todoItemIndex);
       todoElem.remove();
       todoContainerElement.insertBefore(todoElem, todoContainerElement.children[todoItemIndex]);
       lastIndex = todoItemIndex;
+
+      const elements = Array.from(document.querySelectorAll('.todo-item:not(#placeholder)'));
+      todoList.data = elements.map((elem, idx) => ({
+        description: elem.querySelector('input[type="text"]').value,
+        complted: elem.querySelector('input[type="checkbox"]').checked,
+        index: idx,
+      }));
+      updateStorage(todoList.data);
     }
   };
 
   moveBtn.addEventListener('mousedown', (e) => {
-    console.log('mouse down');
     active = true;
     document.addEventListener('mousemove', mouseMoved);
     offsetFromMoveBtnX = e.pageX - (todoElem.getBoundingClientRect().left + window.scrollX);
@@ -126,7 +131,6 @@ export const createTodo = (item) => {
   });
 
   document.addEventListener('mouseup', () => {
-    console.log('mouse up');
     active = false;
     todoElem.classList.remove('selected');
     document.removeEventListener('mousemove', mouseMoved);
@@ -160,11 +164,11 @@ export const onSubmit = () => {
 
 export const removeCompleted = () => {
   const notCompletedList = todoList.data.filter((i) => !i.completed);
-  const todoElements = document.querySelectorAll('div.todo-item');
+  const todoElements = document.querySelectorAll('.todo-item');
   todoList.data
     .filter((item) => item.completed)
-    .map((item) => todoElements[item.index])
-    .map((element) => element.remove());
+    .map((item) => Array.from(todoElements).find((i) => parseInt(i.id, 10) === item.index))
+    .forEach((element) => element.remove());
 
   todoList.data = notCompletedList;
   updateStorage(todoList.data);
