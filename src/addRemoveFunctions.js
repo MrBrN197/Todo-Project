@@ -44,7 +44,7 @@ export const createTodo = (item) => {
           <i class="far fa-trash-alt"></i>
         </div>
       </div>
-      <div class="icon move temporary">
+      <div class="icon move">
         <i class="fas fa-ellipsis-v"></i>
       </div>
       `;
