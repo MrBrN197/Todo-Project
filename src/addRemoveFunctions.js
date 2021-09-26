@@ -2,8 +2,6 @@ import setCompleted from './setCompleted.js';
 import { todoList, updateStorage, getItem } from './storage.js';
 
 const todoContainerElement = document.querySelector('.todo-container .todo-items-container');
-const todoContainerX = todoContainerElement.getBoundingClientRect().left;
-const todoContainerY = todoContainerElement.getBoundingClientRect().top;
 
 const removeTodoItem = (todoElem) => {
   todoList.data.splice(todoElem.id, 1);
@@ -29,7 +27,7 @@ const PLACEHOLDER = document.createElement('div');
 PLACEHOLDER.id = 'placeholder';
 PLACEHOLDER.style.position = 'absolute';
 PLACEHOLDER.style.width = '384px';
-PLACEHOLDER.style.border = '1px solid black';
+PLACEHOLDER.style.outline = '1px solid black';
 // PLACEHOLDER.style.height = '52px';
 
 export const createTodo = (item) => {
@@ -90,8 +88,8 @@ export const createTodo = (item) => {
   const mouseMoved = (e) => {
     e.preventDefault();
     if (!active) return;
-    offsetLeft = e.pageX - todoContainerX;
-    offsetTop = e.pageY - todoContainerY;
+    offsetLeft = e.pageX - (todoContainerElement.getBoundingClientRect().left + window.scrollX);
+    offsetTop = e.pageY - (todoContainerElement.getBoundingClientRect().top + window.scrollY);
     PLACEHOLDER.style.left = `${offsetLeft - offsetFromMoveBtnX}px`;
     PLACEHOLDER.style.top = `${offsetTop - offsetFromMoveBtnY}px`;
 
@@ -122,8 +120,8 @@ export const createTodo = (item) => {
     offsetFromMoveBtnX = e.pageX - (todoElem.getBoundingClientRect().left + window.scrollX);
     offsetFromMoveBtnY = e.pageY - (todoElem.getBoundingClientRect().top + window.scrollY);
 
-    offsetLeft = e.pageX - todoContainerX;
-    offsetTop = e.pageY - todoContainerY;
+    offsetLeft = e.pageX - (todoContainerElement.getBoundingClientRect().left + window.scrollX);
+    offsetTop = e.pageY - (todoContainerElement.getBoundingClientRect().top + window.scrollY);
     PLACEHOLDER.style.left = `${offsetLeft - offsetFromMoveBtnX}px`;
     PLACEHOLDER.style.top = `${offsetTop - offsetFromMoveBtnY}px`;
 
