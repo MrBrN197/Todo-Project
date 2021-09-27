@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-33M39T364R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-33M39T364R');
+  </script>
+  <script src="https://kit.fontawesome.com/29d7bf5b00.js" crossorigin="anonymous"></script>
+  <title>Document</title>
+<script defer src="bundle.js"></script></head>
+
+<body>
+  <div class="todo-container">
+    <div class="title">
+      <p>Today's To Do</p>
+      <div id="refresh-todo-icon">
+        <i class="fas fa-sync-alt"></i>
+      </div>
+    </div>
+    <form autocomplete="off" action="#" class="add-todo">
+      <input id="add-todo-input" type="text" placeholder="Add to your list...">
+      <input type="submit" hidden>
+      <div id="add-todo-btn" class="icon">
+        <i class="fas fa-level-down-alt fa-rotate-90"></i>
+      </div>
+    </form>
+    <div class="todo-items-container">
+    </div>
+    <div class="clear-completed-container">
+      <button type="button" id="clear-completed-btn" class="clear-btn">Clear all completed</button>
+    </div>
+  </div>
+
+</body>
+
+</html>
