@@ -4,7 +4,9 @@
 
 > A simple HTML todo project
 
-![demo](demo.gif)
+[Live Demo](https://mrbrn197.github.io/Todo-Project/dist/)
+
+[![demo](demo.gif)](https://mrbrn197.github.io/Todo-Project/dist/)
 
 ## Built With
 
