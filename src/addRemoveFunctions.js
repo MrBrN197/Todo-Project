@@ -3,7 +3,7 @@ import { todoList, updateStorage, getItem } from './storage.js';
 
 const todoContainerElement = document.querySelector('.todo-container .todo-items-container');
 
-const removeTodoItem = (todoElem) => {
+export const removeTodoItem = (todoElem) => {
   todoList.data.splice(todoElem.id, 1);
   todoElem.remove();
   // reset todo elements indexes
