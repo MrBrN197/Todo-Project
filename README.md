@@ -13,6 +13,7 @@
 - CSS, HTML, JS
 - Webhint, Hint, Stylelint
 - Webpack
+- Jest.js
 
 ## Getting Started
 

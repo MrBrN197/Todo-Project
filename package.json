@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "watch": "jest --watch .*",
     "serve": "webpack serve --open",
     "lint": "npx eslint . && npx stylelint **/*.{css,scss} && npx hint .",
