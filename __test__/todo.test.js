@@ -1,4 +1,4 @@
-import { createTodo } from '../src/addRemoveFunctions.js';
+import { createTodo, removeTodoItem } from '../src/addRemoveFunctions.js';
 
 describe('DOM Manipulation', () => {
   it('should add a item to the DOM', () => {
@@ -19,5 +19,19 @@ describe('DOM Manipulation', () => {
     expect(list).toHaveLength(2);
   });
 
-  it.todo('should remove an item from the dom');
+  it('should remove an item from the dom', () => {
+    const initialHTML = '';
+    document.querySelector('.todo-container .todo-items-container').innerHTML = initialHTML;
+    const item = {
+      description: 'this is a second added item',
+      index: 1,
+      completed: false,
+    };
+    createTodo(item);
+    const todoElem = document.querySelector('.todo-item');
+    const deleteBtn = todoElem.querySelector('.icon.delete');
+    removeTodoItem(todoElem);
+    const list = document.querySelectorAll('.todo-item');
+    expect(list).toHaveLength(0);
+  });
 });
