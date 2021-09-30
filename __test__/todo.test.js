@@ -29,7 +29,6 @@ describe('DOM Manipulation', () => {
     };
     createTodo(item);
     const todoElem = document.querySelector('.todo-item');
-    const deleteBtn = todoElem.querySelector('.icon.delete');
     removeTodoItem(todoElem);
     const list = document.querySelectorAll('.todo-item');
     expect(list).toHaveLength(0);
