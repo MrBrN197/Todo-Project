@@ -84,7 +84,7 @@ describe('DOM Manipulation', () => {
     expect(item.completed).toBe(true); // completed status should true
   });
 
-  it('', () => {
+  it('removeCompleted  should remove all completed tasks', () => {
     // Arrange
     const initialHTML = `
       <div id="0" class="todo-item"></div>
