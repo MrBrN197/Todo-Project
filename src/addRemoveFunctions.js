@@ -12,9 +12,12 @@ export const removeTodoItem = (todoElem) => {
   updateStorage(todoList.data);
 };
 
-const editTodoItem = (item, newValue) => {
-  item.description = newValue.trim();
+export const editTodoItem = (e, todoElem) => {
+  const item = getItem(todoElem.id);
+  const newValue = e.currentTarget.value.trim();
+  item.description = newValue;
   updateStorage(todoList.data);
+  e.currentTarget.value = newValue;
 };
 
 let active = false;
@@ -53,10 +56,7 @@ export const createTodo = (item) => {
   const deleteBtn = todoElem.querySelector('.icon.delete');
   const moveBtn = todoElem.querySelector('.icon.move');
 
-  inputBox.addEventListener('change', (e) => {
-    editTodoItem(getItem(todoElem.id), e.currentTarget.value);
-    e.currentTarget.value = e.currentTarget.value.trim();
-  });
+  inputBox.addEventListener('change', (e) => editTodoItem(e, todoElem));
   inputBox.addEventListener('focus', () => {
     todoElem.classList.add('highlight');
     inputBox.classList.remove('checked');
