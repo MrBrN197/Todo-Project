@@ -1,5 +1,6 @@
 import { createTodo, removeTodoItem, editTodoItem } from '../src/addRemoveFunctions.js';
 import { getItem } from '../src/storage.js';
+import setCompleted from '../src/setCompleted.js';
 
 jest.mock('../src/storage.js');
 
@@ -60,5 +61,23 @@ describe('DOM Manipulation', () => {
     expect(item.index).toBe(1); // index should stay the same
     expect(item.description).toBe('Rainbow'); // description should be changed to the new description
     expect(item.completed).toBe(false); // completed status should remain the same
+  });
+
+  it('Edit the completed status', () => {
+    const item = {
+      description: 'Colors',
+      index: 1,
+      completed: false,
+    };
+    const mockedEvent = {
+      currentTarget: {
+        checked: true,
+      },
+    };
+    const inputBox = document.createElement('INPUT');
+    setCompleted(mockedEvent, item, inputBox);
+    expect(item.index).toBe(1); // index should be 1
+    expect(item.description).toBe('Colors'); // description should remain the same(Colors)
+    expect(item.completed).toBe(true); // completed status should true
   });
 });
