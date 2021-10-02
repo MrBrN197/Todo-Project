@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest",
+    "coverage": "jest --coverage",
     "watch": "jest --watch .*",
     "serve": "webpack serve --open",
     "lint": "npx eslint . && npx stylelint **/*.{css,scss} && npx hint .",
@@ -23,7 +24,7 @@
     "eslint-plugin-import": "^2.24.2",
     "hint": "^6.1.4",
     "html-webpack-plugin": "^5.3.2",
-    "jest": "^27.2.3",
+    "jest": "^25.5.4",
     "style-loader": "^3.2.1",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^21.0.0",
